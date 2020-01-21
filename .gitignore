@@ -3,3 +3,8 @@
 ################################################################################
 
 /.vs/CursoOnline/v16
+/src/CursoOnline.Dominio/obj
+/test/CursoOnline.Dominio.Test/obj
+/src/CursoOnline.Dominio/bin/Debug/netstandard2.0
+/test/CursoOnline.Dominio.Test/bin/Debug/netcoreapp3.0
+/.vs/CursoOnline/DesignTimeBuild
