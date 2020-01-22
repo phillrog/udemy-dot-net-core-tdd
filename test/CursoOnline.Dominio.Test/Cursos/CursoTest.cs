@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
-using Xunit;
 using ExpectedObjects;
+using Xunit;
 
 namespace CursoOnline.Dominio.Test.Cursos
 {
@@ -12,15 +12,26 @@ namespace CursoOnline.Dominio.Test.Cursos
 			var cursoEsperado = new
 			{
 				Nome = "Informática básica",
-				PublicoAlvo = "Estudantes",
+				PublicoAlvo = PublicoAlvo.Estudante,
 				Valor = (double)950,
 				CargaHoraria = (double)80
 			};
 
-			var curso = new Curso(cursoEsperado.Nome, cursoEsperado.CargaHoraria, cursoEsperado.PublicoAlvo, cursoEsperado.Valor);
+			var curso = new Curso(cursoEsperado.Nome,
+						 cursoEsperado.CargaHoraria,
+						 cursoEsperado.PublicoAlvo,
+						 cursoEsperado.Valor);
 
 			cursoEsperado.ToExpectedObject().ShouldMatch(curso);
 
+		}
+
+		public enum PublicoAlvo
+		{
+			Estudante,
+			Universitario,
+			Epregado,
+			Empreendedor
 		}
 
 		private class Curso
@@ -28,9 +39,9 @@ namespace CursoOnline.Dominio.Test.Cursos
 			private double valor;
 			private double cargaHoraria;
 			private string nome;
-			private string publicoAlvo;
+			private PublicoAlvo publicoAlvo;
 
-			public string PublicoAlvo
+			public PublicoAlvo PublicoAlvo
 			{
 				get { return publicoAlvo; }
 				set { publicoAlvo = value; }
@@ -57,7 +68,7 @@ namespace CursoOnline.Dominio.Test.Cursos
 			}
 
 
-			public Curso(string nome, double cargaHoraria, string publicoAlvo, double valor)
+			public Curso(string nome, double cargaHoraria, PublicoAlvo publicoAlvo, double valor)
 			{
 				this.nome = nome;
 				this.cargaHoraria = cargaHoraria;
