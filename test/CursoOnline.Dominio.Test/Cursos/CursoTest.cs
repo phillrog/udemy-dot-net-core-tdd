@@ -5,6 +5,7 @@ using CursoOnline.Dominio.Test._Util;
 using ExpectedObjects;
 using Xunit;
 using Xunit.Abstractions;
+using Bogus;
 
 namespace CursoOnline.Dominio.Test.Cursos
 {
@@ -22,11 +23,13 @@ namespace CursoOnline.Dominio.Test.Cursos
 			_output = output;
 			_output.WriteLine("COnstrutor sendo inicializado");
 
-			_nome = "Informática básica";
+			var faker = new Faker();
+
+			_nome = faker.Random.Word();
 			_publicoAlvo = PublicoAlvo.Estudante;
-			_valor = (double)950;
-			_cargaHoraria = (double)80;
-			_descricao = "Teste";
+			_valor = faker.Random.Double(50, 1000);
+			_cargaHoraria = faker.Random.Double(100, 1000);
+			_descricao = faker.Lorem.Paragraph();
 		}
 
 		public void Dispose()
