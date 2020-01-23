@@ -1,11 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using CursoOnline.Dominio.Test._Builders;
 using CursoOnline.Dominio.Test._Util;
 using ExpectedObjects;
 using Xunit;
 using Xunit.Abstractions;
 using Bogus;
+using CursoOnline.Dominio.Cursos;
 
 namespace CursoOnline.Dominio.Test.Cursos
 {
@@ -13,7 +13,7 @@ namespace CursoOnline.Dominio.Test.Cursos
 	{
 		private readonly ITestOutputHelper _output;
 		private readonly string _nome;
-		private readonly PublicoAlvo _publicoAlvo;
+		private readonly PublicoAlvoEnum _publicoAlvo;
 		private readonly double _valor;
 		private readonly double _cargaHoraria;
 		private readonly string _descricao;
@@ -26,7 +26,7 @@ namespace CursoOnline.Dominio.Test.Cursos
 			var faker = new Faker();
 
 			_nome = faker.Random.Word();
-			_publicoAlvo = PublicoAlvo.Estudante;
+			_publicoAlvo = PublicoAlvoEnum.Estudante;
 			_valor = faker.Random.Double(50, 1000);
 			_cargaHoraria = faker.Random.Double(100, 1000);
 			_descricao = faker.Lorem.Paragraph();
@@ -90,48 +90,6 @@ namespace CursoOnline.Dominio.Test.Cursos
 
 			Assert.Throws<ArgumentException>(() => CursoBuilder.Novo()
 						.ComValor(valorInvalido).Build()).ComMensagem("Valor inválido");
-		}
-	}
-
-	public enum PublicoAlvo
-	{
-		Estudante,
-		Universitario,
-		Epregado,
-		Empreendedor
-	}
-
-	public class Curso
-	{
-		private double _valor;
-		private string _descricao;
-		private double _cargaHoraria;
-		private string _nome;
-		private PublicoAlvo _publicoAlvo;
-
-		public PublicoAlvo PublicoAlvo { get => _publicoAlvo; set => _publicoAlvo = value; }
-		public string Nome { get => _nome; set => _nome = value; }
-		public double CargaHoraria { get => _cargaHoraria; set => _cargaHoraria = value; }
-		public double Valor { get => _valor; set => _valor = value; }
-		public string Descricao { get => _descricao; set => _descricao = value; }
-
-		public Curso(string nome, double cargaHoraria, PublicoAlvo publicoAlvo, double valor, string descricao)
-		{
-			if (string.IsNullOrEmpty(nome))
-				throw new ArgumentException("Nome inválido");
-
-			if (cargaHoraria < 1)
-				throw new ArgumentException("Carga Horária inválido");
-
-			if (valor < 1)
-				throw new ArgumentException("Valor inválido");
-
-
-			this._nome = nome;
-			this._descricao = descricao;
-			this._cargaHoraria = cargaHoraria;
-			this._publicoAlvo = publicoAlvo;
-			this._valor = valor;
 		}
 	}
 }

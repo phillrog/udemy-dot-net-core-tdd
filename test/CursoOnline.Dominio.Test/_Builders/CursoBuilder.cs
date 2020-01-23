@@ -1,14 +1,11 @@
-﻿using CursoOnline.Dominio.Test.Cursos;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using CursoOnline.Dominio.Cursos;
 
 namespace CursoOnline.Dominio.Test._Builders
 {
 	public class CursoBuilder
 	{
 		private string _nome = "Informática básica";
-		private PublicoAlvo _publicoAlvo = PublicoAlvo.Estudante;
+		private PublicoAlvoEnum _publicoAlvo = PublicoAlvoEnum.Estudante;
 		private double _valor = (double)950;
 		private double _cargaHoraria = (double)80;
 		private string _descricao = "Teste";
@@ -46,7 +43,7 @@ namespace CursoOnline.Dominio.Test._Builders
 			return this;
 		}
 
-		public CursoBuilder ComPublicoAlvo(PublicoAlvo publicoAlvo)
+		public CursoBuilder ComPublicoAlvo(PublicoAlvoEnum publicoAlvo)
 		{
 			_publicoAlvo = publicoAlvo;
 
