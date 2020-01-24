@@ -2,30 +2,45 @@
 using CursoOnline.Dominio.Cursos;
 using Xunit;
 using Moq;
+using Bogus;
 
 namespace CursoOnline.Dominio.Test.Cursos
 {
 	public class ArmazenadorDeCursoTest
 	{
+		private CursoDTO _cursoDTO;
+		private Mock<ICursoRepositorio> _cursoRepositorioMock;
+		private ArmazenadorDeCurso _armazenadorDeCurso;
+
+		public ArmazenadorDeCursoTest()
+		{
+			var fake = new Faker();
+
+			_cursoDTO = new CursoDTO
+			{
+				Nome = fake.Random.Word(),
+				Descricao = fake.Lorem.Paragraph(),
+				CargaHoraria = fake.Random.Double(50, 1000),
+				PublicoAlvo = 1,
+				Valor = fake.Random.Double(1000, 2000)
+			};
+
+			_cursoRepositorioMock = new Mock<ICursoRepositorio>();
+
+			_armazenadorDeCurso = new ArmazenadorDeCurso(_cursoRepositorioMock.Object);
+
+		}
+
 		[Fact]
 		public void DeveAdicionarOCurso()
 		{
-			var cursoDTO = new CursoDTO
-			{
-				Nome = "Curso A",
-				Descricao = "Descrição",
-				CargaHoraria = 80,
-				PublicoAlvo = 1,
-				Valor = 850.0
-			};
+			
+			_armazenadorDeCurso.Armazenar(_cursoDTO);
 
-			var cursoRepositorioMock = new Mock<ICursoRepositorio>();
-
-			var armazenadorDeCurso = new ArmazenadorDeCurso(cursoRepositorioMock.Object);
-
-			armazenadorDeCurso.Armazenar(cursoDTO);
-
-			cursoRepositorioMock.Verify(d => d.Adicionar(It.IsAny<Curso>()));
+			_cursoRepositorioMock.Verify(d => d.Adicionar(
+				It.Is<Curso>(c => 
+					c.Nome.Equals(_cursoDTO.Nome) 
+				 && c.Descricao.Equals(_cursoDTO.Descricao))));
 		}
 	}
 
@@ -59,7 +74,7 @@ namespace CursoOnline.Dominio.Test.Cursos
 	{
 		public string Nome { get; set; }
 		public string Descricao { get; set; }
-		public int CargaHoraria { get; set; }
+		public double CargaHoraria { get; set; }
 		public int PublicoAlvo { get; set; }
 		public double Valor { get; set; }
 	}
