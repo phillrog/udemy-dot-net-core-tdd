@@ -43,14 +43,8 @@ namespace CursoOnline.Web
 				await unitOfWork.Commit();
 			});
 
-			if (env.IsDevelopment())
-			{
-				app.UseDeveloperExceptionPage();
-			}
-			else
-			{
-				app.UseExceptionHandler("/Home/Error");
-			}
+			app.UseDeveloperExceptionPage();
+			
 			app.UseStaticFiles();
 
 			app.UseRouting();
