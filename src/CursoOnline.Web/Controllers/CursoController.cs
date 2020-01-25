@@ -64,7 +64,7 @@ namespace CursoOnline.Web.Controllers
 		public IActionResult Salvar(CursoDTO model)
 		{
 			_armazenadorDeCurso.Armazenar(model);
-			return Ok();
+			return RedirectToAction("Index");
 		}
 	}
 }
