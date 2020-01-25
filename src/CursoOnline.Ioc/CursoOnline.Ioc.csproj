@@ -11,8 +11,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="C:\Users\psouza\source\repos\udemy-dot-net-core-tdd\src\CursoOnline.Dados\CursoOnline.Dados.csproj" />
-    <ProjectReference Include="C:\Users\psouza\source\repos\udemy-dot-net-core-tdd\src\CursoOnline.Dominio\CursoOnline.Dominio.csproj" />
+    <ProjectReference Include="..\CursoOnline.Dados\CursoOnline.Dados.csproj" />
+    <ProjectReference Include="..\CursoOnline.Dominio\CursoOnline.Dominio.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,3 +1,4 @@
+using CursoOnline.Dominio._Base;
 using CursoOnline.Ioc;
 using CursoOnline.Web.Filters;
 using Microsoft.AspNetCore.Builder;
@@ -24,7 +25,8 @@ namespace CursoOnline.Web
 
 			services.AddControllersWithViews();
 
-			services.AddMvc(config => {
+			services.AddMvc(config =>
+			{
 				config.Filters.Add(typeof(CustomExceptionFilter));
 			});
 		}
@@ -32,6 +34,15 @@ namespace CursoOnline.Web
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
 		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 		{
+			app.Use(async (context, next) =>
+			{
+				await next.Invoke();
+
+				var unitOfWork = (IUnitOfWork)context.RequestServices.GetService(typeof(IUnitOfWork));
+
+				await unitOfWork.Commit();
+			});
+
 			if (env.IsDevelopment())
 			{
 				app.UseDeveloperExceptionPage();
@@ -52,6 +63,8 @@ namespace CursoOnline.Web
 					name: "default",
 					pattern: "{controller=Home}/{action=Index}/{id?}");
 			});
+
+			
 		}
 	}
 }
