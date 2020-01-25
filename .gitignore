@@ -8,3 +8,12 @@
 /src/CursoOnline.Dominio/bin/Debug/netstandard2.0
 /test/CursoOnline.Dominio.Test/bin/Debug/netcoreapp3.0
 /.vs/CursoOnline/DesignTimeBuild
+/CursoOnline.Dados/obj
+/CursoOnline.Dados/bin/Debug/netstandard2.0
+/src/CursoOnline.Web/obj
+/src/CursoOnline.Web/bin/Debug/netcoreapp3.0
+/src/CursoOnline.Ioc/obj
+/src/CursoOnline.Ioc/bin/Debug/netstandard2.0
+/src/CursoOnline.Dados/obj
+/src/CursoOnline.Dados/bin/Debug/netstandard2.0
+/.vs/CursoOnline/config
