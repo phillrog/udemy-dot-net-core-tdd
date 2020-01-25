@@ -3,9 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29411.108
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CursoOnline.Dominio.Test", "test\CursoOnline.Dominio.Test\CursoOnline.Dominio.Test.csproj", "{C6A6AC98-B069-4136-BD8F-8B05004222BD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CursoOnline.Dominio.Test", "W:\udemy-dot-net-core-tdd\test\CursoOnline.Dominio.Test\CursoOnline.Dominio.Test.csproj", "{C6A6AC98-B069-4136-BD8F-8B05004222BD}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CursoOnline.Dominio", "C:\Users\psouza\source\repos\udemy-dot-net-core-tdd\src\CursoOnline.Dominio\CursoOnline.Dominio.csproj", "{E537BECA-BAA5-424A-A75C-A1DB1DD5F547}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CursoOnline.Dados", "C:\Users\psouza\source\repos\udemy-dot-net-core-tdd\src\CursoOnline.Dados\CursoOnline.Dados.csproj", "{E45DEEAD-6AD2-4257-A355-57A73EA65039}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CursoOnline.Web", "W:\udemy-dot-net-core-tdd\src\CursoOnline.Web\CursoOnline.Web.csproj", "{9B1FBC58-E562-4C0A-9CBC-E522F93A2686}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CursoOnline.Ioc", "W:\udemy-dot-net-core-tdd\src\CursoOnline.Ioc\CursoOnline.Ioc.csproj", "{24C1AE10-E188-416F-B528-000A3D70F054}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +27,18 @@ Global
 		{E537BECA-BAA5-424A-A75C-A1DB1DD5F547}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E537BECA-BAA5-424A-A75C-A1DB1DD5F547}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E537BECA-BAA5-424A-A75C-A1DB1DD5F547}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E45DEEAD-6AD2-4257-A355-57A73EA65039}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E45DEEAD-6AD2-4257-A355-57A73EA65039}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E45DEEAD-6AD2-4257-A355-57A73EA65039}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E45DEEAD-6AD2-4257-A355-57A73EA65039}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B1FBC58-E562-4C0A-9CBC-E522F93A2686}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B1FBC58-E562-4C0A-9CBC-E522F93A2686}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B1FBC58-E562-4C0A-9CBC-E522F93A2686}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B1FBC58-E562-4C0A-9CBC-E522F93A2686}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24C1AE10-E188-416F-B528-000A3D70F054}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24C1AE10-E188-416F-B528-000A3D70F054}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24C1AE10-E188-416F-B528-000A3D70F054}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24C1AE10-E188-416F-B528-000A3D70F054}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
