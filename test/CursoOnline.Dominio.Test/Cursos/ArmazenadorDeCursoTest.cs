@@ -11,21 +11,22 @@ namespace CursoOnline.Dominio.Test.Cursos
 {
 	public class ArmazenadorDeCursoTest
 	{
+		private Faker _faker;
 		private CursoDTO _cursoDTO;
 		private Mock<ICursoRepositorio> _cursoRepositorioMock;
 		private ArmazenadorDeCurso _armazenadorDeCurso;
 
 		public ArmazenadorDeCursoTest()
 		{
-			var fake = new Faker();
+			_faker = new Faker();
 
 			_cursoDTO = new CursoDTO
 			{
-				Nome = fake.Random.Word(),
-				Descricao = fake.Lorem.Paragraph(),
-				CargaHoraria = fake.Random.Double(50, 1000),
+				Nome = _faker.Random.Word(),
+				Descricao = _faker.Lorem.Paragraph(),
+				CargaHoraria = _faker.Random.Double(50, 1000),
 				PublicoAlvo = "Estudante",
-				Valor = fake.Random.Double(1000, 2000)
+				Valor = _faker.Random.Double(1000, 2000)
 			};
 
 			_cursoRepositorioMock = new Mock<ICursoRepositorio>();
@@ -52,7 +53,7 @@ namespace CursoOnline.Dominio.Test.Cursos
 			_cursoRepositorioMock.Setup(c => c.ObeterPeloNome(_cursoDTO.Nome)).Returns(cursoJaSalvo);
 
 			Assert.Throws<ExcecaoDeDominio>(() => _armazenadorDeCurso.Armazenar(_cursoDTO))
-				.ComMensagem("Nome do curso já consta no banco de dados");
+				.ComMensagem(Resource.NomeCursoJaExiste);
 		}
 
 		[Fact]
@@ -62,7 +63,33 @@ namespace CursoOnline.Dominio.Test.Cursos
 			_cursoDTO.PublicoAlvo = publicoAlvoInvalido;
 
 			Assert.Throws<ExcecaoDeDominio>(() => _armazenadorDeCurso.Armazenar(_cursoDTO))
-				.ComMensagem("Publico Alvo Inválido");
+				.ComMensagem(Resource.PublicoAlvoInvalido);
+		}
+
+		[Fact]
+		public void DeveAlterarDadosDoCurso()
+		{
+			_cursoDTO.Id = _faker.Random.Int(1, 999999999);
+			var curso = CursoBuilder.Novo().Build();
+			_cursoRepositorioMock.Setup(c => c.ObterPorId(_cursoDTO.Id)).Returns(curso);
+
+			_armazenadorDeCurso.Armazenar(_cursoDTO);
+
+			Assert.Equal(_cursoDTO.Nome, curso.Nome);
+			Assert.Equal(_cursoDTO.CargaHoraria, curso.CargaHoraria);
+			Assert.Equal(_cursoDTO.Valor, curso.Valor);
+		}
+
+		[Fact]
+		public void NaoDeveAdicionarNoRepositorioQuandoOCursoJaExiste()
+		{
+			_cursoDTO.Id = _faker.Random.Int(1, 999999999);
+			var curso = CursoBuilder.Novo().Build();
+			_cursoRepositorioMock.Setup(c => c.ObterPorId(_cursoDTO.Id)).Returns(curso);
+
+			_armazenadorDeCurso.Armazenar(_cursoDTO);
+
+			_cursoRepositorioMock.Verify(c => c.Adicionar(It.IsAny<Curso>()),Times.Never);
 		}
 	}
 }
