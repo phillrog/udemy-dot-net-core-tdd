@@ -32,5 +32,32 @@ namespace CursoOnline.Dominio.Cursos
 			_publicoAlvo = publicoAlvo;
 			_valor = valor;
 		}
+
+		public void AlterarNome(string nome)
+		{
+			ValidadorDeRegra.Novo()
+				.Quando(string.IsNullOrEmpty(nome), "Nome inválido")
+				.DispararExcecaoSeExistir();
+
+			Nome = nome;
+		}
+
+		public void AlterarCargaHoraria(double cargaHoraria)
+		{
+			ValidadorDeRegra.Novo()
+				.Quando(cargaHoraria < 1, "Carga Horária inválido")
+				.DispararExcecaoSeExistir();
+
+			CargaHoraria = cargaHoraria;
+		}
+
+		public void AlterarValor(double valor)
+		{
+			ValidadorDeRegra.Novo()
+				.Quando(valor < 1, "Valor inválido")
+				.DispararExcecaoSeExistir();
+
+			Valor = valor;
+		}
 	}
 }
