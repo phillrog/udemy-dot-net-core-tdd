@@ -3,7 +3,7 @@ using System;
 
 namespace CursoOnline.Dominio.Cursos
 {
-public class ArmazenadorDeCurso
+	public class ArmazenadorDeCurso
 	{
 		private readonly ICursoRepositorio _cursoRepositorio;
 
@@ -27,7 +27,19 @@ public class ArmazenadorDeCurso
 				cursoDTO.Valor,
 				cursoDTO.Descricao);
 
-			_cursoRepositorio.Adicionar(curso);
+			if (cursoDTO.Id > 0)
+			{
+				curso = _cursoRepositorio.ObterPorId(cursoDTO.Id);
+				curso.AlterarNome(cursoDTO.Nome);
+				curso.AlterarCargaHoraria(cursoDTO.CargaHoraria);
+				curso.AlterarValor(cursoDTO.Valor);
+			}
+			else
+			{
+				_cursoRepositorio.Adicionar(curso);
+			}
+
+
 		}
 	}
 }
