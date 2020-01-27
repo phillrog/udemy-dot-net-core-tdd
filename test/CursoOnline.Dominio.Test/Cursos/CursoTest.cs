@@ -13,6 +13,7 @@ namespace CursoOnline.Dominio.Test.Cursos
 	public class CursoTest : IDisposable
 	{
 		private readonly ITestOutputHelper _output;
+		private readonly Faker _faker;
 		private readonly string _nome;
 		private readonly PublicoAlvoEnum _publicoAlvo;
 		private readonly double _valor;
@@ -24,13 +25,13 @@ namespace CursoOnline.Dominio.Test.Cursos
 			_output = output;
 			_output.WriteLine("COnstrutor sendo inicializado");
 
-			var faker = new Faker();
+			_faker = new Faker();
 
-			_nome = faker.Random.Word();
+			_nome = _faker.Random.Word();
 			_publicoAlvo = PublicoAlvoEnum.Estudante;
-			_valor = faker.Random.Double(50, 1000);
-			_cargaHoraria = faker.Random.Double(100, 1000);
-			_descricao = faker.Lorem.Paragraph();
+			_valor = _faker.Random.Double(50, 1000);
+			_cargaHoraria = _faker.Random.Double(100, 1000);
+			_descricao = _faker.Lorem.Paragraph();
 		}
 
 		public void Dispose()
@@ -96,7 +97,7 @@ namespace CursoOnline.Dominio.Test.Cursos
 		[Fact]
 		public void DeveAlterarNome()
 		{
-			var nomeEsperado = "Phillipe";
+			var nomeEsperado = _faker.Person.FullName;
 
 			var curso = CursoBuilder.Novo().Build();
 
@@ -118,7 +119,7 @@ namespace CursoOnline.Dominio.Test.Cursos
 		[Fact]
 		public void DeveAlterarCargaHoraria()
 		{
-			var cargaHorariaEsperada = 20.8;
+			var cargaHorariaEsperada = _faker.Random.Double(1, 2000.99);
 
 			var curso = CursoBuilder.Novo().Build();
 
@@ -144,7 +145,7 @@ namespace CursoOnline.Dominio.Test.Cursos
 		[Fact]
 		public void DeveAlterarValor()
 		{
-			var valorEsperado = 1020.8;
+			var valorEsperado = _faker.Random.Double(1, 2000.99);
 
 			var curso = CursoBuilder.Novo().Build();
 
