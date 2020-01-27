@@ -48,7 +48,7 @@ namespace CursoOnline.Dominio.Test.Cursos
 		[Fact]
 		public void NaoDeveAdicionarCursoComMesmoNomeDeOutroJaSalvo()
 		{
-			var cursoJaSalvo = CursoBuilder.Novo().ComNome(_cursoDTO.Nome).Build();
+			var cursoJaSalvo = CursoBuilder.Novo().ComId(_faker.Random.Int(1, 99999999)).ComNome(_cursoDTO.Nome).Build();
 
 			_cursoRepositorioMock.Setup(c => c.ObeterPeloNome(_cursoDTO.Nome)).Returns(cursoJaSalvo);
 
