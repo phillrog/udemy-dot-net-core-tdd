@@ -77,7 +77,20 @@ namespace CursoOnline.Dominio.Test.Alunos
 
 			Assert.Equal(_alunoDTO.Nome, aluno.Nome);			
 		}
-		
+
+		[Fact]
+		public void NaoDeveAlterarTodosCamposDoAluno()
+		{
+			_alunoDTO.Cpf = _faker.Person.Cpf(true);
+
+			var aluno = AlunoBuilder.Novo().ComCpf(_alunoDTO.Cpf).Build();
+			_alunoRepositorioMock.Setup(c => c.ObterPorId(_alunoDTO.Id)).Returns(aluno);
+
+			_armazenadorDeAluno.Armazenar(_alunoDTO);
+
+			Assert.Equal(_alunoDTO.Cpf, aluno.Cpf);
+		}
+
 		[Fact]
 		public void NaoDeveAdicionarNoRepositorioQuandoOCursoJaExiste()
 		{
