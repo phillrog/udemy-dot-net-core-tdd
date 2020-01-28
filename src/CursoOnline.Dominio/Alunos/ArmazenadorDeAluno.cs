@@ -15,10 +15,10 @@ namespace CursoOnline.Dominio.Alunos
 
 		public void Armazenar(AlunoDTO alunoDTO)
 		{
-			var alunoJaSalvo = _alunoRepositorio.ObeterPeloNome(alunoDTO.Nome);
+			var alunoJaSalvo = _alunoRepositorio.ObterPorCpf(alunoDTO.Cpf);
 
 			ValidadorDeRegra.Novo()
-				.Quando(alunoJaSalvo != null && alunoJaSalvo.Id != alunoDTO.Id, Resource.NomeAlunoJaExiste)
+				.Quando(alunoJaSalvo != null && alunoJaSalvo.Cpf == alunoDTO.Cpf, Resource.CpfAlunoJaExiste)
 				.Quando(!Enum.TryParse<PublicoAlvoEnum>(alunoDTO.PublicoAlvo, out var publicoAlvo), Resource.PublicoAlvoInvalido)
 				.DispararExcecaoSeExistir();
 

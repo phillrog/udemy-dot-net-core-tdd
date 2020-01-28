@@ -10,9 +10,9 @@ namespace CursoOnline.Dados.Repositorios
 		{
 		}
 
-		public Aluno ObeterPeloNome(string nome)
+		public Aluno ObterPorCpf(string cpf)
 		{
-			var entidade = Context.Set<Aluno>().Where(c => c.Nome.Contains(nome));
+			var entidade = Context.Set<Aluno>().Where(c => c.Cpf == cpf);
 			if (entidade.Any())
 				return entidade.First();
 			return null;
