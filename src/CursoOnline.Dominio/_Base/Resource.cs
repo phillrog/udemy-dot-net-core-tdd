@@ -14,5 +14,6 @@ namespace CursoOnline.Dominio._Base
 		public static readonly string CpfInvalido = "Cpf inválido";
 		public static readonly string EmailInvalido = "E-mail inválido";
 		public static readonly string NomeAlunoJaExiste = "Nome do aluno já consta no banco de dados";
+		public static readonly string CpfAlunoJaExiste = "Cpf do aluno já consta no banco de dados";
 	}
 }
