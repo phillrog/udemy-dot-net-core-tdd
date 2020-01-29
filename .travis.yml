@@ -1,8 +1,37 @@
 language: csharp
-solution: CursoOnline.sln
+mono: none
+dist: xenial
+dotnet: 3.1
 install:
-  - nuget restore CursoOnline.sln
-  - nuget install xunit.runners -Version 3.9.0 -OutputDirectory testrunner
+  - dotnet restore
+
 script:
-  - msbuild /p:Configuration=Release CursoOnline.sln
-  - mono ./testrunner/xunit.runners.1.9.2/tools/xunit.console.clr4.exe ./CursoOnline.Dominio.Test/bin/Release/CursoOnline.Dominio.Test.dll
+  - dotnet build --no-restore -c Release
+  - dotnet test --no-build --no-restore -t 
+
+before_deploy:
+  - git config --global user.email "builds@travis-ci.com"
+  - git config --global user.name "Travis CI"
+  - export GIT_TAG=$TRAVIS_BRANCH-0.1.$TRAVIS_BUILD_NUMBER
+  - git tag $GIT_TAG -a -m "Generated tag from TravisCI for build $TRAVIS_BUILD_NUMBER"
+  - git push -q https://$TAGPERM@github.com/phillrog/udemy-dot-net-core-tdd --tags
+  - ls -R
+
+deploy:
+  skip_cleanup: true
+  provider: releases
+  api_key: $GITPERM
+  file:
+  - README.md
+  on:
+    tags: false
+    all_branches: true
+
+branches:
+  except:
+  - /^*-v[0-9]/
+
+notifications:
+  email:
+    on_success: change
+    on_failure: change
