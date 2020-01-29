@@ -17,3 +17,11 @@
 /src/CursoOnline.Dados/obj
 /src/CursoOnline.Dados/bin/Debug/netstandard2.0
 /.vs/CursoOnline/config
+/src/CursoOnline.Web/bin/Release/netcoreapp3.0
+/src/CursoOnline.Ioc/bin/Release/netstandard2.0
+/src/CursoOnline.Dominio/bin/Release/netstandard2.0
+/src/CursoOnline.Dados/bin/Release/netstandard2.0
+/test/CursoOnline.Dominio.Test/TestResults
+/test/CursoOnline.Dominio.Test/bin/Release/netcoreapp3.0
+/log.txt
+/log.host.20-01-28_21-37-15_45098_4.txt
