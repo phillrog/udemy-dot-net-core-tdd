@@ -1,7 +1,7 @@
 ﻿using System;
 using CursoOnline.Dominio._Base;
 using CursoOnline.Dominio._Util;
-using CursoOnline.Dominio.Cursos;
+using CursoOnline.Dominio.PublicoAlvo;
 
 namespace CursoOnline.Dominio.Alunos
 {
