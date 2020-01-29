@@ -1,4 +1,4 @@
-![Master](https://api.travis-ci.com/phillrog/udemy-dot-net-core-tdd.svg?branch=master) ![Release](https://api.travis-ci.com/phillrog/udemy-dot-net-core-tdd.svg?branch=release)
+master ![Master](https://api.travis-ci.com/phillrog/udemy-dot-net-core-tdd.svg?branch=master) release![Release](https://api.travis-ci.com/phillrog/udemy-dot-net-core-tdd.svg?branch=release)
 
 # Projeto Curso Online
 
