@@ -29,7 +29,7 @@ deploy:
 
 branches:
   except:
-  - /^master.*$|release.*$|aula-.*$/
+  - /^aula-.*$/
 
 notifications:
   email:
