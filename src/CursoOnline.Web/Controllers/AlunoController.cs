@@ -43,7 +43,10 @@ namespace CursoOnline.Web.Controllers
 			var dto = new AlunoDTO
 			{
 				Id = Aluno.Id,
-				Nome = Aluno.Nome	
+				Nome = Aluno.Nome,
+				Cpf = Aluno.Cpf,
+				Email = Aluno.Email,
+				PublicoAlvo = Aluno.PublicoAlvo.ToString()
 			};
 
 			return View("NovoOuEditar", dto);
