@@ -3,6 +3,7 @@ using Bogus.Extensions.Brazil;
 using CursoOnline.Dominio._Base;
 using CursoOnline.Dominio.Alunos;
 using CursoOnline.Dominio.Cursos;
+using CursoOnline.Dominio.PublicoAlvo;
 using CursoOnline.Dominio.Test._Builders;
 using CursoOnline.Dominio.Test._Util;
 using Moq;
@@ -14,6 +15,7 @@ namespace CursoOnline.Dominio.Test.Alunos
 	public class ArmazenadorDeAlunoTest
 	{
 		private readonly Mock<IAlunoRepositorio> _alunoRepositorioMock;
+		private readonly Mock<IConversorDePublicoAlvo> _conversorDePublicoAlvoMock;
 		private readonly ArmazenadorDeAluno _armazenadorDeAluno;
 		private readonly Faker _faker;
 		private readonly AlunoDTO _alunoDTO;
@@ -31,7 +33,8 @@ namespace CursoOnline.Dominio.Test.Alunos
 			};
 
 			_alunoRepositorioMock = new Mock<IAlunoRepositorio>();
-			_armazenadorDeAluno = new ArmazenadorDeAluno(_alunoRepositorioMock.Object);
+			_conversorDePublicoAlvoMock = new Mock<IConversorDePublicoAlvo>();
+			_armazenadorDeAluno = new ArmazenadorDeAluno(_alunoRepositorioMock.Object, _conversorDePublicoAlvoMock.Object);
 		}
 
 		[Fact]
@@ -46,24 +49,14 @@ namespace CursoOnline.Dominio.Test.Alunos
 		}
 
 		[Fact]
-		public void NaoDeveAdicionarAlunoComMesmoNomeDeOutroJaSalvo()
+		public void NaoDeveAdicionarAlunoComMesmoCpfDeOutroJaSalvo()
 		{
-			var alunoJaSalvo = AlunoBuilder.Novo().ComId(_faker.Random.Int(1, 99999999)).ComNome(_alunoDTO.Nome).Build();
+			var alunoJaSalvo = AlunoBuilder.Novo().ComCpf(_alunoDTO.Cpf).Build();
 
-			_alunoRepositorioMock.Setup(c => c.ObeterPeloNome(_alunoDTO.Nome)).Returns(alunoJaSalvo);
+			_alunoRepositorioMock.Setup(c => c.ObterPorCpf(_alunoDTO.Cpf)).Returns(alunoJaSalvo);
 
 			Assert.Throws<ExcecaoDeDominio>(() => _armazenadorDeAluno.Armazenar(_alunoDTO))
-				.ComMensagem(Resource.NomeAlunoJaExiste);
-		}
-
-		[Fact]
-		public void NaoDeveInformarPublicoAlvoInvalido()
-		{
-			var publicoAlvoInvalido = "Medico";
-			_alunoDTO.PublicoAlvo = publicoAlvoInvalido;
-
-			Assert.Throws<ExcecaoDeDominio>(() => _armazenadorDeAluno.Armazenar(_alunoDTO))
-				.ComMensagem(Resource.PublicoAlvoInvalido);
+				.ComMensagem(Resource.CpfAlunoJaExiste);
 		}
 
 		[Fact]
@@ -77,7 +70,20 @@ namespace CursoOnline.Dominio.Test.Alunos
 
 			Assert.Equal(_alunoDTO.Nome, aluno.Nome);			
 		}
-		
+
+		[Fact]
+		public void NaoDeveAlterarTodosCamposDoAluno()
+		{
+			_alunoDTO.Cpf = _faker.Person.Cpf(true);
+
+			var aluno = AlunoBuilder.Novo().ComCpf(_alunoDTO.Cpf).Build();
+			_alunoRepositorioMock.Setup(c => c.ObterPorId(_alunoDTO.Id)).Returns(aluno);
+
+			_armazenadorDeAluno.Armazenar(_alunoDTO);
+
+			Assert.Equal(_alunoDTO.Cpf, aluno.Cpf);
+		}
+
 		[Fact]
 		public void NaoDeveAdicionarNoRepositorioQuandoOCursoJaExiste()
 		{

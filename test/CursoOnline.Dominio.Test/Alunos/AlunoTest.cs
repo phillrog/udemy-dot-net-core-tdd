@@ -1,6 +1,5 @@
 ﻿using Bogus;
 using Bogus.Extensions.Brazil;
-using CursoOnline.Dominio.Cursos;
 using CursoOnline.Dominio.Alunos;
 using Xunit;
 using Xunit.Abstractions;
@@ -8,6 +7,7 @@ using ExpectedObjects;
 using CursoOnline.Dominio._Base;
 using CursoOnline.Dominio.Test._Builders;
 using CursoOnline.Dominio.Test._Util;
+using CursoOnline.Dominio.PublicoAlvo;
 
 namespace CursoOnline.Dominio.Test.Alunos
 {

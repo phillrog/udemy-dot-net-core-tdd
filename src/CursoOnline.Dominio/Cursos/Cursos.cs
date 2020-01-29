@@ -1,5 +1,5 @@
 ﻿using CursoOnline.Dominio._Base;
-using System;
+using CursoOnline.Dominio.PublicoAlvo;
 
 namespace CursoOnline.Dominio.Cursos
 {

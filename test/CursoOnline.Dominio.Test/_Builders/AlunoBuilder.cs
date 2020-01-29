@@ -2,6 +2,7 @@
 using Bogus.Extensions.Brazil;
 using CursoOnline.Dominio.Alunos;
 using CursoOnline.Dominio.Cursos;
+using CursoOnline.Dominio.PublicoAlvo;
 using System;
 using System.Collections.Generic;
 using System.Text;
