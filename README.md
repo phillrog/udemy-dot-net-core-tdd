@@ -1,3 +1,5 @@
+![Master](https://travis-ci.com/phillrog/udemy-dot-net-core-tdd.svg?branch=master) ![Release](https://travis-ci.com/phillrog/udemy-dot-net-core-tdd.svg?branch=release)
+
 # Projeto Curso Online
 
 ## Udemy - Professor: Stephany Henrique de Almeida Batista
