@@ -29,7 +29,7 @@ deploy:
 
 branches:
   except:
-  - /^*-v[0-9]/
+  - /^aula-.*$/
 
 notifications:
   email:
