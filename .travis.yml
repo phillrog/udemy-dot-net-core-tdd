@@ -7,14 +7,14 @@ install:
 
 script:
   - dotnet build --no-restore -c Release
-  - dotnet test --no-build --no-restore
+  - dotnet test
 
 before_deploy:
   - git config --global user.email "builds@travis-ci.com"
   - git config --global user.name "Travis CI"
   - export GIT_TAG=$TRAVIS_BRANCH-0.1.$TRAVIS_BUILD_NUMBER
   - git tag $GIT_TAG -a -m "Generated tag from TravisCI for build $TRAVIS_BUILD_NUMBER"
-  - git push -q https://$TAGPERM@github.com/phillrog/udemy-dot-net-core-tdd --tags
+  - git push -q https://$GITPERM@github.com/phillrog/udemy-dot-net-core-tdd --tags
   - ls -R
 
 deploy:
