@@ -6,6 +6,8 @@ using CursoOnline.Dominio._Base;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using CursoOnline.Dominio.Alunos;
+using CursoOnline.Dominio.PublicoAlvo;
 
 namespace CursoOnline.Ioc
 {
@@ -18,6 +20,8 @@ namespace CursoOnline.Ioc
 			services.AddScoped(typeof(IRepositorio<>), typeof(RepositorioBase<>));
 			services.AddScoped(typeof(ICursoRepositorio), typeof(CursoRepositorio));
 			services.AddScoped(typeof(IUnitOfWork), typeof(UnitOfWork));
+			services.AddScoped(typeof(IAlunoRepositorio), typeof(AlunoRepositorio));
+			services.AddScoped(typeof(IConversorDePublicoAlvo), typeof(ConversorDePublicoAlvo));
 			services.AddScoped<ArmazenadorDeCurso>();
 		}
 	}
