@@ -7,7 +7,7 @@ install:
 
 script:
   - dotnet build --no-restore -c Release
-  - dotnet test --no-build --no-restore
+  - dotnet test
 
 before_deploy:
   - git config --global user.email "builds@travis-ci.com"
