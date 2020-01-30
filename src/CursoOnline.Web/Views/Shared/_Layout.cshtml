@@ -22,12 +22,14 @@
 						<li class="nav-item">
 							<a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
 						</li>
-						<li class="nav-item">
-							<a class="nav-link text-dark" asp-area="" asp-controller="Curso" asp-action="Index">Curso</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Cadastros</a>
+							<div class="dropdown-menu">
+								<a class="nav-link text-dark" asp-area="" asp-controller="Curso" asp-action="Index">Curso</a>
+								<div class="dropdown-divider"></div>
+								<a class="nav-link text-dark" asp-area="" asp-controller="Aluno" asp-action="Index">Aluno</a>
+							</div>
+						</li>						
 					</ul>
 				</div>
 			</div>

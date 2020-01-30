@@ -51,7 +51,7 @@ namespace CursoOnline.Dominio.Test.Alunos
 		[Fact]
 		public void NaoDeveAdicionarAlunoComMesmoCpfDeOutroJaSalvo()
 		{
-			var alunoJaSalvo = AlunoBuilder.Novo().ComCpf(_alunoDTO.Cpf).Build();
+			var alunoJaSalvo = AlunoBuilder.Novo().ComId(_faker.Random.Int(1,999999999)).Build();
 
 			_alunoRepositorioMock.Setup(c => c.ObterPorCpf(_alunoDTO.Cpf)).Returns(alunoJaSalvo);
 
