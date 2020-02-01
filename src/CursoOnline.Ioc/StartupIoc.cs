@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using CursoOnline.Dominio.Alunos;
 using CursoOnline.Dominio.PublicoAlvo;
+using CursoOnline.Dominio.Matriculas;
 
 namespace CursoOnline.Ioc
 {
@@ -20,6 +21,7 @@ namespace CursoOnline.Ioc
 			services.AddScoped(typeof(IRepositorio<>), typeof(RepositorioBase<>));
 			services.AddScoped(typeof(ICursoRepositorio), typeof(CursoRepositorio));
 			services.AddScoped(typeof(IAlunoRepositorio), typeof(AlunoRepositorio));
+			services.AddScoped(typeof(IMatriculaRepositorio), typeof(MatriculaRepositorio));
 
 			services.AddScoped(typeof(IUnitOfWork), typeof(UnitOfWork));
 			
@@ -27,6 +29,7 @@ namespace CursoOnline.Ioc
 
 			services.AddScoped<ArmazenadorDeCurso>();
 			services.AddScoped<ArmazenadorDeAluno>();
+			services.AddScoped<CriacaoDeMatricula>();
 		}
 	}
 }

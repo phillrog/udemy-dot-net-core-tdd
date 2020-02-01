@@ -16,6 +16,7 @@ namespace CursoOnline.Dominio.Test._Builders
 		private PublicoAlvoEnum _publicoAlvo;
 		private string _cpf;
 		private string _email;
+
 		private int _id;
 
 		public static AlunoBuilder Novo()
@@ -54,6 +55,13 @@ namespace CursoOnline.Dominio.Test._Builders
 		public AlunoBuilder ComId(int id)
 		{
 			_id = id;
+
+			return this;
+		}
+
+		public AlunoBuilder ComPublicoAlvo(PublicoAlvoEnum publicoAlvo)
+		{
+			_publicoAlvo = publicoAlvo;
 
 			return this;
 		}
