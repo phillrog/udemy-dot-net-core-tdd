@@ -19,5 +19,8 @@ namespace CursoOnline.Dominio._Base
 		public static readonly string CursoInvalido = "Curso inválido";
 		public static readonly string ValorPagoInvalido = "Valor pago inválido";
 		public static readonly string ValorPagoNaoPodeSerMaiorQueValorDoCurso = "Valor pago não pode ser maior que valor do curso";
+		public static readonly string PublicoAlvoDiferentes = "Publico alvo do aluno e do curso são diferentes";
+		public static readonly string CursoNaoEncontrado = "Curso não encontrado";
+		public static readonly string AlunoNaoEncontrado = "Aluno não encontrado";
 	}
 }

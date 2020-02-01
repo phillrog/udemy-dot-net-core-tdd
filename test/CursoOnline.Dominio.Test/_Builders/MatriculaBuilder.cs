@@ -2,6 +2,7 @@
 using CursoOnline.Dominio.Alunos;
 using CursoOnline.Dominio.Cursos;
 using CursoOnline.Dominio.Matriculas;
+using CursoOnline.Dominio.PublicoAlvo;
 
 namespace CursoOnline.Dominio.Test._Builders
 {
@@ -18,11 +19,11 @@ namespace CursoOnline.Dominio.Test._Builders
 
 		public static MatriculaBuilder Novo()
 		{
-			var curso = CursoBuilder.Novo().Build();
+			var curso = CursoBuilder.Novo().ComPublicoAlvo(PublicoAlvoEnum.Empreendedor).Build();
 
 			return new MatriculaBuilder()
 			{
-				Aluno = AlunoBuilder.Novo().Build(),
+				Aluno = AlunoBuilder.Novo().ComPublicoAlvo(PublicoAlvoEnum.Empreendedor).Build(),
 				Curso = curso,
 				ValorPago = curso.Valor
 			};
