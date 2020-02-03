@@ -22,5 +22,7 @@ namespace CursoOnline.Dominio._Base
 		public static readonly string PublicoAlvoDiferentes = "Publico alvo do aluno e do curso são diferentes";
 		public static readonly string CursoNaoEncontrado = "Curso não encontrado";
 		public static readonly string AlunoNaoEncontrado = "Aluno não encontrado";
+		public static readonly string NotaInvalida = "Nota inválida";
+		public static readonly string MatriculaNaoEncontrada = "Matrícula não encontrada";
 	}
 }
