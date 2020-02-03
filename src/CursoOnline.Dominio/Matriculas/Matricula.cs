@@ -1,4 +1,6 @@
-﻿using CursoOnline.Dominio._Base;
+﻿using System;
+using System.Collections.Generic;
+using CursoOnline.Dominio._Base;
 using CursoOnline.Dominio.Alunos;
 using CursoOnline.Dominio.Cursos;
 
@@ -9,6 +11,8 @@ namespace CursoOnline.Dominio.Matriculas
 		private Aluno _aluno;
 		private Curso _curso;
 		private double _valorPago;
+		private double _notaDoAluno;
+		private bool _cursoConcluido;
 
 		public Matricula(Aluno aluno, Curso curso, double valorPago)
 		{
@@ -30,6 +34,19 @@ namespace CursoOnline.Dominio.Matriculas
 		public Aluno Aluno { get => _aluno; set => _aluno = value; }
 		public Curso Curso { get => _curso; set => _curso = value; }
 		public double ValorPago { get => _valorPago; set => _valorPago = value; }
-		public bool TemDesconto { get; internal set; }
+		public bool TemDesconto { get;  set; }
+		public double NotaDoAluno { get => _notaDoAluno; set => _notaDoAluno = value; }
+		public bool CursoConcluido { get => _cursoConcluido; private set => _cursoConcluido = value; }
+
+		public void InformarNota(double notDoAlunoEsperada)
+		{
+			ValidadorDeRegra.Novo()
+				.Quando(notDoAlunoEsperada < 0 || notDoAlunoEsperada > 10, Resource.NotaInvalida)
+				.DispararExcecaoSeExistir();
+
+			NotaDoAluno = notDoAlunoEsperada;
+
+			CursoConcluido = true;
+		}
 	}
 }
