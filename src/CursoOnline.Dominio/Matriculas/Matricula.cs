@@ -6,13 +6,15 @@ using CursoOnline.Dominio.Cursos;
 
 namespace CursoOnline.Dominio.Matriculas
 {
-	public class Matricula: Entidade
+	public class Matricula : Entidade
 	{
 		private Aluno _aluno;
 		private Curso _curso;
 		private double _valorPago;
 		private double _notaDoAluno;
 		private bool _cursoConcluido;
+		private bool _matriculaCancelada;
+		private bool _matriculaConcluida;
 
 		public Matricula(Aluno aluno, Curso curso, double valorPago)
 		{
@@ -34,19 +36,31 @@ namespace CursoOnline.Dominio.Matriculas
 		public Aluno Aluno { get => _aluno; set => _aluno = value; }
 		public Curso Curso { get => _curso; set => _curso = value; }
 		public double ValorPago { get => _valorPago; set => _valorPago = value; }
-		public bool TemDesconto { get;  set; }
+		public bool TemDesconto { get; set; }
 		public double NotaDoAluno { get => _notaDoAluno; set => _notaDoAluno = value; }
 		public bool CursoConcluido { get => _cursoConcluido; private set => _cursoConcluido = value; }
+		public bool Cancelada { get => _matriculaCancelada; private set => _matriculaCancelada = value; }
+		public bool Concluida { get => _matriculaConcluida; set => _matriculaConcluida = value; }
 
-		public void InformarNota(double notDoAlunoEsperada)
+		public void InformarNota(double notDoAluno)
 		{
 			ValidadorDeRegra.Novo()
-				.Quando(notDoAlunoEsperada < 0 || notDoAlunoEsperada > 10, Resource.NotaInvalida)
+				.Quando(notDoAluno < 0 || notDoAluno > 10, Resource.NotaInvalida)
+				.Quando(_matriculaCancelada, Resource.MatriculaCancelada)
 				.DispararExcecaoSeExistir();
 
-			NotaDoAluno = notDoAlunoEsperada;
+			NotaDoAluno = notDoAluno;
 
 			CursoConcluido = true;
+		}
+
+		public void Cancelar()
+		{
+			ValidadorDeRegra.Novo()
+				.Quando(CursoConcluido, Resource.MatriculaJaConcluida)
+				.DispararExcecaoSeExistir();
+
+			Cancelada = true;
 		}
 	}
 }
