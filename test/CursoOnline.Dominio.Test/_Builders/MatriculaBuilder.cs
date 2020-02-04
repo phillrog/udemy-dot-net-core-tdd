@@ -8,14 +8,13 @@ namespace CursoOnline.Dominio.Test._Builders
 {
 	public class MatriculaBuilder
 	{
-		private Aluno _aluno;
-		private Curso _curso;
-		private double _valorPago;
 		private static readonly Faker _faker = new Faker();
 
-		public Aluno Aluno { get => _aluno; set => _aluno = value; }
-		public Curso Curso { get => _curso; set => _curso = value; }
-		public double ValorPago { get => _valorPago; set => _valorPago = value; }
+		protected Aluno Aluno { get; set; }
+		protected Curso Curso { get; set; }
+		protected double ValorPago { get; set; }
+		protected bool Cancelada { get; set; }
+		public bool CursoConcluido { get; private set; }
 
 		public static MatriculaBuilder Novo()
 		{
@@ -49,12 +48,34 @@ namespace CursoOnline.Dominio.Test._Builders
 
 			return this;
 		}
+		public MatriculaBuilder ComCancelada(bool cancelada)
+		{
+			Cancelada = cancelada;
 
+			return this;
+		}
 
+		public MatriculaBuilder ComConcluida(bool concluida)
+		{
+			CursoConcluido = concluida;
+
+			return this;
+		}
 
 		public Matricula Build()
 		{
-			return new Matricula(Aluno, Curso, ValorPago);
+			var matricula = new Matricula(Aluno, Curso, ValorPago);
+
+			if(Cancelada)
+				matricula.Cancelar();
+
+			if (CursoConcluido)
+			{
+				const double notaAluno = 7;
+				matricula.InformarNota(notaAluno);
+			}
+
+			return matricula;
 		}
 
 	}

@@ -24,5 +24,7 @@ namespace CursoOnline.Dominio._Base
 		public static readonly string AlunoNaoEncontrado = "Aluno não encontrado";
 		public static readonly string NotaInvalida = "Nota inválida";
 		public static readonly string MatriculaNaoEncontrada = "Matrícula não encontrada";
+		public static readonly string MatriculaCancelada = "Não é permitido cancelar uma matricula cancelada";
+		public static readonly string MatriculaJaConcluida = "Não é permitido cancelar uma matricula já concluida";
 	}
 }
