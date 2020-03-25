@@ -25,3 +25,5 @@
 /test/CursoOnline.Dominio.Test/bin/Release/netcoreapp3.0
 /log.txt
 /log.host.20-01-28_21-37-15_45098_4.txt
+/node_modules
+/package-lock.json
